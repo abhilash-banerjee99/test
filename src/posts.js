@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, EmailField } from 'react-admin';
+import { List, Datagrid, TextField} from 'react-admin';
 import CustomEmailField from '../src/components/CustomEmail';
 
 export const UserList = props => (
