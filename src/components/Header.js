@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import clsx from 'clsx';
-import {useHistory, NavLink} from 'react-router-dom';
-import {useToasts} from 'react-toast-notifications';
+import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+// import {useToasts} from 'react-toast-notifications';
 import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {
     Drawer,
@@ -27,7 +27,10 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import SettingsIcon from '@material-ui/icons/Settings';
-const drawerWidth= 240;
+
+import EnhancedTable from '../components/Users'
+
+const drawerWidth= 180;
 const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
@@ -61,6 +64,10 @@ const useStyles = makeStyles((theme)=>({
       },
       drawerPaper: {
         width: drawerWidth,
+      },
+      link: {
+        textDecoration: 'none',
+        color: theme.palette.text.primary
       },
       drawerHeader: {
         display: 'flex',
@@ -126,6 +133,7 @@ const Header = () => {
                         <AccountCircleIcon className={classes.account}/>
                     </Toolbar>
                 </AppBar>
+                <Router>
                 <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -135,9 +143,9 @@ const Header = () => {
                 paper: classes.drawerPaper,
                 }}
                 >
-                    <Typography variant="h6" style={{textAlign: 'center'}} noWrap>
-                            Dashboard
-                    </Typography>
+                <Typography variant="h6" style={{textAlign: 'center'}} noWrap>
+                    Dashboard
+                </Typography>
                 <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -145,97 +153,77 @@ const Header = () => {
                 </div>
                 <Divider/>
                 <List>
-                    {[ 'Home','Customers', 'Store', 'Transaction'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>{index === 0 ? <HomeIcon/> : index===1 ? <PeopleIcon /> : index===2 ? <StorefrontIcon/>: <AccountBalanceIcon/>}</ListItemIcon>
-                    {/* <ListItemIcon><StorefrontIcon/></ListItemIcon> */}
-                    <ListItemText primary={text} />
+                  <Link to="/" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <HomeIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Home"}/>
                     </ListItem>
-                    ))}
+                  </Link>
+                  <Link to="/customer" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <PeopleIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Customer"}/>
+                    </ListItem>
+                  </Link>
+                  <Link to="/store" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <StorefrontIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Store"}/>
+                    </ListItem>
+                  </Link>
+                  <Link to="/transaction" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <AccountBalanceIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Transaction"}/>
+                    </ListItem>
+                  </Link>
+                    {/* {[ 'Home','Customers', 'Store', 'Transaction'].map((text, index) => (
+                    <Link to="/" className={classes.link}>
+                      <ListItem button key={text}>
+                        <ListItemIcon>
+                          {index === 0 ? <HomeIcon/> 
+                          : index===1 ? <PeopleIcon/>
+                          : index===2 ? <StorefrontIcon/> 
+                          : <AccountBalanceIcon/>}
+                        </ListItemIcon>
+                      <ListItemText primary={text} />
+                      </ListItem>
+                    </Link>
+                    ))} */}
                 </List>
                 <List>
                     {['Products', 'Orders', 'Settings'].map((text, index) => (
+                      <Link to="/" className={classes.link}>
                         <ListItem button key={text}>
-                        <ListItemIcon>{index === 0 ? <LocalOfferIcon /> : index ===1 ? <AssignmentIcon/>: <SettingsIcon />}</ListItemIcon>
-                        <ListItemText primary={text} />
+                          <ListItemIcon>
+                            {index === 0 ? <LocalOfferIcon /> 
+                            : index ===1 ? <AssignmentIcon/>
+                            : <SettingsIcon />}
+                          </ListItemIcon>
+                          <ListItemText primary={text} />
                         </ListItem>
+                      </Link>
                     ))}
                 </List>
                 </Drawer>
-                <main
-            className={clsx(classes.content, {
-              [classes.contentShift]: open,
-            })}
-          >
-            <div className={classes.drawerHeader} />
-            <Typography paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-              ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-              facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-              gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-              donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-              adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-              Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-              imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-              arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-              donec massa sapien faucibus et molestie ac.
-            </Typography>
-            <Typography paragraph>
-              Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-              facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-              tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-              consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-              vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-              hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-              tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-              nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-              accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-            </Typography>
-          </main>
-          </div>
-    )
+                  <Switch>
+                    <Route exact path="/customer">
+                      <EnhancedTable/>
+                    </Route>
+                    <Route exact path="/transaction">
+                      <EnhancedTable/>
+                    </Route>
+                  </Switch>
+                </Router>
+              </div>
+    );
 }
 export default Header;
- {/* const logOutButton = ()=>{
-        localStorage.removeItem('token')
-        localStorage.removeItem('username')
-        history.push('auth/login')
-        addToast('You are successfully logged out...', {
-			appearance: 'info',
-			autoDismiss: true
-		})
-    } */}
-    
-            {/* <header>
-                <MDBNavbar style={{ backgroundColor: 'black'}} dark expand="md" scrolling>
-                    <MDBNavbarBrand>
-                        <strong className='white-text'>Admin Panel</strong>
-                    </MDBNavbarBrand>
-                    <MDBCollapse navbar>
-                        <MDBNavbarNav left>
-                            <NavLink to='/dashboard' activeClassName='active' style={{color:'white'}}>
-                                Dashboard
-                            </NavLink>
-                            &nbsp;&nbsp;
-							<NavLink to="/category" activeClassName="active" style={{ color: 'white' }}>
-								Category
-							</NavLink>
-							&nbsp;&nbsp;
-							<NavLink to="/brand" activeClassName="active" style={{ color: 'white' }}>
-								Brand
-							</NavLink>
-							&nbsp;&nbsp;
-							<NavLink to="/product" activeClassName="seleactivected" style={{ color: 'white' }}>
-								Product
-							</NavLink>
-                        </MDBNavbarNav>
-                        <MDBNavbarNav right>
-							<MDBNavItem>
-								<strong onClick={logOutButton} style={{ color: 'white', cursor: 'pointer' }}>
-									Logout
-								</strong>
-							</MDBNavItem>
-						</MDBNavbarNav>
-                    </MDBCollapse>
-                </MDBNavbar>
-            </header> */}
