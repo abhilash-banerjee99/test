@@ -6,6 +6,7 @@ import {makeStyles, useTheme} from '@material-ui/core/styles'
 import {
     Drawer,
     AppBar,
+    Avatar,
     Toolbar,
     List,
     Typography,
@@ -16,7 +17,7 @@ import {
     ListItemText,
     CssBaseline
 } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -28,8 +29,8 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import SettingsIcon from '@material-ui/icons/Settings';
 
-import EnhancedTable from '../components/Users'
-
+import DataTable from '../components/Users'
+import Abhi from '../assets/abhi.jpg';
 const drawerWidth= 180;
 const useStyles = makeStyles((theme)=>({
     root: {
@@ -49,8 +50,11 @@ const useStyles = makeStyles((theme)=>({
           duration: theme.transitions.duration.enteringScreen,
         }),
     },
-    account:{
-        marginLeft: theme.spacing(200),
+    avatar:{
+      display: 'flex',
+      '&>*':{
+        margin: theme.spacing(1),
+      }
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -127,10 +131,11 @@ const Header = () => {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" noWrap>
+                        <Avatar className={classes.avatar} alt="Admin" src="../assets/abhi.jpg"/>
+                        {/* <Typography variant="h6" noWrap>
                             Admin Panel
-                        </Typography>
-                        <AccountCircleIcon className={classes.account}/>
+                        </Typography> */}
+                        {/* <AccountCircleIcon className={classes.account}/> */}
                     </Toolbar>
                 </AppBar>
                 <Router>
@@ -144,7 +149,7 @@ const Header = () => {
                 }}
                 >
                 <Typography variant="h6" style={{textAlign: 'center'}} noWrap>
-                    Dashboard
+                    
                 </Typography>
                 <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
@@ -216,10 +221,10 @@ const Header = () => {
                 </Drawer>
                   <Switch>
                     <Route exact path="/customer">
-                      <EnhancedTable/>
+                      <DataTable/>
                     </Route>
                     <Route exact path="/transaction">
-                      <EnhancedTable/>
+                      <DataTable/>
                     </Route>
                   </Switch>
                 </Router>
