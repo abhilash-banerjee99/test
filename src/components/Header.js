@@ -31,10 +31,13 @@ import SettingsIcon from '@material-ui/icons/Settings';
 
 import DataTable from '../components/Users'
 import Abhi from '../assets/abhi.jpg';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+
 const drawerWidth= 180;
 const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
+        justifyContent: 'center'
     },
     appBar:{
         transition: theme.transitions.create(['margin', 'width'], {
@@ -50,11 +53,25 @@ const useStyles = makeStyles((theme)=>({
           duration: theme.transitions.duration.enteringScreen,
         }),
     },
-    avatar:{
+    admin:{
       display: 'flex',
-      '&>*':{
-        margin: theme.spacing(1),
-      }
+      flexDirection: 'row',
+      justifyContent: 'center',
+      marginLeft: '80%',
+      notifications:{
+        margin: theme.spacing(1)
+      },
+      avatar:{
+        display: 'flex',
+        justifyContent: 'center',
+        '&>*':{
+          margin: theme.spacing(1),
+        },
+        large:{
+          width: theme.spacing(7),
+          height: theme.spacing(7)
+        }
+      },
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -131,7 +148,10 @@ const Header = () => {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Avatar className={classes.avatar} alt="Admin" src="../assets/abhi.jpg"/>
+                        <div className={classes.admin}>
+                          <NotificationsIcon/>
+                          <Avatar className={classes.avatar} alt="Admin" src={Abhi}/>
+                        </div>
                         {/* <Typography variant="h6" noWrap>
                             Admin Panel
                         </Typography> */}
