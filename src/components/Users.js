@@ -1,13 +1,12 @@
 import React from 'react';
-//import {makeStyles} from '@material-ui/styles'
+import {makeStyles} from '@material-ui/styles'
 import {DataGrid} from '@material-ui/data-grid';
 
-// const useStyles = makeStyles((theme)=>({
-//   root:{
-//     display: 'flex',
-//   },
-//   {},
-// }))
+const useStyles = makeStyles((theme)=>({
+  root:{
+    display: 'flex',
+  },
+}))
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -34,15 +33,18 @@ const rows = [
   { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
   { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
   { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: 50 },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+  { id: 6, lastName: 'Melisandre', firstName: 'Will', age: 150 },
   { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
   { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 10, lastName: 'Dey', firstName: 'Rupak', age: 40 },
+  { id: 11, lastName: 'Sarkar', firstName: 'Anay', age: 35 },
 ];
 
 export default function DataTable() {
+  const classes = useStyles();
   return (
-    <div style={{ alignContent: "center", marginTop: "10%",height: 400, width: '75%' }}>
+    <div className={classes} style={{ alignContent: "center", marginTop: "10%",height: 400, width: '65%' }}>
       <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
     </div>
   );

@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme)=>({
       justifyContent: 'center',
       marginLeft: '80%',
       notifications:{
-        margin: theme.spacing(1)
+        marginRight: '30%',
       },
       avatar:{
         display: 'flex',
@@ -149,7 +149,7 @@ const Header = () => {
                             <MenuIcon />
                         </IconButton>
                         <div className={classes.admin}>
-                          <NotificationsIcon/>
+                          <NotificationsIcon className={classes.notifications}/>
                           <Avatar className={classes.avatar} alt="Admin" src={Abhi}/>
                         </div>
                         {/* <Typography variant="h6" noWrap>
@@ -168,9 +168,9 @@ const Header = () => {
                 paper: classes.drawerPaper,
                 }}
                 >
-                <Typography variant="h6" style={{textAlign: 'center'}} noWrap>
-                    
-                </Typography>
+                <div style={{justifyContent: 'center', size: '40px'}}>
+                    <Avatar style={{textAlign: 'center'}} alt="Admin" src={Abhi}/>
+                </div>
                 <div className={classes.drawerHeader}>
                 <IconButton onClick={handleDrawerClose}>
                     {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -178,6 +178,9 @@ const Header = () => {
                 </div>
                 <Divider/>
                 <List>
+                  <Typography style={{family: 'Gerogia', size: '30px', textAlign: 'left'}}>
+                        GENERAL
+                  </Typography>
                   <Link to="/" className={classes.link}>
                     <ListItem button>
                     <ListItemIcon>
@@ -186,6 +189,17 @@ const Header = () => {
                     <ListItemText primary={"Home"}/>
                     </ListItem>
                   </Link>
+                  <Link to="/transaction" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <AccountBalanceIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Finance"}/>
+                    </ListItem>
+                  </Link>
+                  <Typography style={{textSize: '25px', textAlign: 'left'}}>
+                    MANAGEMENT
+                  </Typography>
                   <Link to="/customer" className={classes.link}>
                     <ListItem button>
                     <ListItemIcon>
@@ -202,14 +216,24 @@ const Header = () => {
                     <ListItemText primary={"Store"}/>
                     </ListItem>
                   </Link>
-                  <Link to="/transaction" className={classes.link}>
+                  
+                  <Link to="/products" className={classes.link}>
                     <ListItem button>
                     <ListItemIcon>
-                      <AccountBalanceIcon/>
+                      <LocalOfferIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={"Transaction"}/>
+                    <ListItemText primary={"Products"}/>
                     </ListItem>
                   </Link>
+                  <Link to="/orders" className={classes.link}>
+                    <ListItem button>
+                    <ListItemIcon>
+                      <AssignmentIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={"Orders"}/>
+                    </ListItem>
+                  </Link>
+
                     {/* {[ 'Home','Customers', 'Store', 'Transaction'].map((text, index) => (
                     <Link to="/" className={classes.link}>
                       <ListItem button key={text}>
@@ -224,7 +248,7 @@ const Header = () => {
                     </Link>
                     ))} */}
                 </List>
-                <List>
+                {/* <List>
                     {['Products', 'Orders', 'Settings'].map((text, index) => (
                       <Link to="/" className={classes.link}>
                         <ListItem button key={text}>
@@ -237,7 +261,7 @@ const Header = () => {
                         </ListItem>
                       </Link>
                     ))}
-                </List>
+                </List> */}
                 </Drawer>
                   <Switch>
                     <Route exact path="/customer">
