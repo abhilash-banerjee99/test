@@ -60,9 +60,7 @@ const useStyles = makeStyles((theme)=>({
       flexDirection: 'row',
       justifyContent: 'center',
       marginLeft: '80%',
-      notifications:{
-        marginRight: '30%',
-      },
+      
       avatar:{
         display: 'flex',
         justifyContent: 'center',
@@ -151,7 +149,7 @@ const Header = () => {
                             <MenuIcon />
                         </IconButton>
                         <div className={classes.admin}>
-                          <NotificationsIcon className={classes.notifications}/>
+                          <NotificationsIcon style={{width: 50}}/>
                           <Avatar className={classes.avatar} alt="Admin" src={Abhi}/>
                         </div>
                         {/* <Typography variant="h6" noWrap>
