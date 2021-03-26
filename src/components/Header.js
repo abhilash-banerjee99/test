@@ -30,6 +30,8 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 import DataTable from '../components/Users'
+import FinanceData from '../components/Finance'
+
 import Abhi from '../assets/abhi.jpg';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
@@ -168,7 +170,7 @@ const Header = () => {
                 paper: classes.drawerPaper,
                 }}
                 >
-                <div style={{justifyContent: 'center', size: '40px'}}>
+                <div style={{display: 'flex', justifyContent: 'center', size: '50px'}}>
                     <Avatar style={{textAlign: 'center'}} alt="Admin" src={Abhi}/>
                 </div>
                 <div className={classes.drawerHeader}>
@@ -178,9 +180,9 @@ const Header = () => {
                 </div>
                 <Divider/>
                 <List>
-                  <Typography style={{family: 'Gerogia', size: '30px', textAlign: 'left'}}>
+                  {/* <Typography style={{family: 'Gerogia', size: '30px', textAlign: 'left'}}>
                         GENERAL
-                  </Typography>
+                  </Typography> */}
                   <Link to="/" className={classes.link}>
                     <ListItem button>
                     <ListItemIcon>
@@ -197,9 +199,9 @@ const Header = () => {
                     <ListItemText primary={"Finance"}/>
                     </ListItem>
                   </Link>
-                  <Typography style={{textSize: '25px', textAlign: 'left'}}>
+                  {/* <Typography style={{textSize: '25px', textAlign: 'left'}}>
                     MANAGEMENT
-                  </Typography>
+                  </Typography> */}
                   <Link to="/customer" className={classes.link}>
                     <ListItem button>
                     <ListItemIcon>
@@ -268,7 +270,7 @@ const Header = () => {
                       <DataTable/>
                     </Route>
                     <Route exact path="/transaction">
-                      <DataTable/>
+                      <FinanceData/>
                     </Route>
                   </Switch>
                 </Router>
